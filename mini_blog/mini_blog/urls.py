@@ -16,8 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include  # include - позволяет подключить URL - адреса из других приложений
+from django.conf import settings  # Нужно для реализации проверки "if settings.DEBUG: ..."
+from django.conf.urls.static import static  # -=-
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('blog.urls'))
+    path('', include('blog.urls')),
+
 ]
+if settings.DEBUG:  # Если режим отладки, то добавляем статику в url-паттерны
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

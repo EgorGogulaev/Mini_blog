@@ -120,8 +120,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_DIR = os.path.join(BASE_DIR, 'static')  # Подключение папки со статикой
+STATICFILES_DIRS = [STATIC_DIR]  # Список путей к директориям со статикой
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Константа, определяющая где будут храниться медиа-файлы
+MEDIA_URL = '/media/'
